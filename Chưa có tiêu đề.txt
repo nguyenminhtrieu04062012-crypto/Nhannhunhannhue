@@ -1,0 +1,40 @@
+local function Main(Settings)
+    Settings = Settings or {}
+    local JoinTeam = Settings.JoinTeam or "Marines"
+    
+    if not game:IsLoaded() then game.Loaded:Wait() end
+    
+    local Players, RS = game:GetService("Players"), game:GetService("ReplicatedStorage")
+    local LP = Players.LocalPlayer
+    
+    getgenv().HubName = "Null Hub Remeum" -- Đổi tên tại đây
+    
+    local function Run(url)
+        task.spawn(function() pcall(loadstring(game:HttpGet(url))) end)
+    end
+
+    Run("https://pastefy.app/PjjSurzZ/raw")
+    Run("https://pastefy.app/DLTCsOkn/raw")
+    Run("https://pastefy.app/6rnDrGn7/raw")
+    Run("https://pastefy.app/hxF6zoTx/raw")
+
+    if not LP.Team then
+        pcall(function() RS.Remotes.CommF_:InvokeServer("SetTeam", JoinTeam) end)
+        
+        local char = LP.CharacterAdded:Wait()
+        char:WaitForChild("HumanoidRootPart", 9e9)
+        task.wait(0.5)
+    end
+
+    if getgenv and getgenv()["Old Version"] then
+        Run("https://pastefy.app/iqsS6Mjf/raw")
+    elseif game.PlaceId == 73902483975735 then
+        Run("https://pastefy.app/bJ9yoeit/raw")
+    else
+        Run("https://raw.githubusercontent.com/Dev-NightMystic/Bloxfruits/refs/heads/main/5517645427733848.lua.txt")
+    end
+end
+
+Main()
+
+return Main
